@@ -1,25 +1,24 @@
 const express = require("express"),
-  app = express(),
-  scrape = require("./models/scraper");
+	app = express(),
+	//scrape = require("./models/scraper");
+	scrape = require("./models/scraperoop");
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
-
 app.get("/", function (req, res) {
-  res.render("index.ejs");
+	res.render("index.ejs");
 });
 
 app.get("/support", (req, res) => {
-  res.render("support.ejs");
-})
-
+	res.render("support.ejs");
+});
 
 app.listen(process.env.PORT || 3000, function () {});
 
 function runScraper() {
-  scrape();
-  setTimeout(runScraper, 60 * 60 * 1000);
+	scrape();
+	setTimeout(runScraper, 60 * 60 * 1000);
 }
 
 runScraper();
